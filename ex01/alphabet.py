@@ -1,14 +1,16 @@
 import random
-a = 10
-b = 2
-c = 5
 
-def main(c):
-    for i in range(c):
+
+taishou = 10  #対象文字
+kessonn = 2  #欠損文字数
+rimit = 5  #繰り返し
+
+def main():
+    for i in range(rimit):
         seikai = shutsudai()
         kaitou(seikai)
 
-def shutsudai(b):
+def shutsudai(kesson):
     list = ["A", "B", "C", "D", "E", "F", "G", "F", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     c = random.sample(list, 10)
     d = random.shuffle(c)
@@ -18,6 +20,7 @@ def shutsudai(b):
     f = d.pop(random.randint(0,8))
     print("表示文字")
     print(d)
+    return e, f
 
 def kaitou():
     ans = input("1つ目の文字を入力してください：")
@@ -33,7 +36,8 @@ def kaitou():
             print("またチャレンジしてください")
     else:
         print("またチャレンジしてください")
-main()
+if __name__ == "__main__":
+    main()
 
 
 
