@@ -13,17 +13,17 @@ def button_click(event):
             entry.insert(tk.END, re)
         elif num == "C":
             entry.delete(0, tk.END)
-        elif num == "/":
-            if num == 0:
-            entry.deelte(0, tk.END)
-            entry.insert(tk.END, 0)
+        #elif num == "/":
+         #   if num == 0:
+          #  entry.deelte(0, tk.END)
+           # entry.insert(tk.END, 0)
         else:
             entry.insert(tk.END, num)
 
-def button_click0(event):
-    btn = event.widget
-    txt = btn["注意"]
-    tkm.shoeinfo(txt, f"0で割ることはできません")
+#def button_click0(event):
+    #btn = event.widget
+    #txt = btn["注意"]
+   # tkm.shoeinfo(txt, f"0で割ることはできません")
 
 if __name__ == "__main__":
     root = tk.Tk()
