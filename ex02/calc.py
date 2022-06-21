@@ -9,10 +9,21 @@ def button_click(event):
         if num == "=":
             eq = entry.get()
             re = eval(eq)
-            entry.delate(0, tk.END)
+            entry.delete(0, tk.END)
             entry.insert(tk.END, re)
+        elif num == "C":
+            entry.delete(0, tk.END)
+        elif num == "/":
+            if num == 0:
+            entry.deelte(0, tk.END)
+            entry.insert(tk.END, 0)
         else:
             entry.insert(tk.END, num)
+
+def button_click0(event):
+    btn = event.widget
+    txt = btn["注意"]
+    tkm.shoeinfo(txt, f"0で割ることはできません")
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -24,10 +35,10 @@ if __name__ == "__main__":
                     width = "10",
                     font = ("Time New Roman" , 40)
                     )
-    entry.grid(row=0, column=0, columnspan=3)
+    entry.grid(column=0, columnspan=5)
 
     r = 1;c = 0
-    for num,i in enumerate([9,8,7,6,5,4,3,2,1,0,"+", "="]):
+    for num,i in enumerate(["+","-","*","/",9,8,7,6,5,4,3,2,1,0, "C", "="]):
         button = tk.Button(root, 
                                 text=i, 
                                 width="4", 
@@ -37,7 +48,7 @@ if __name__ == "__main__":
         button.bind("<1>", button_click)
         button.grid(row=r, column=c)
         c += 1
-        if (num+1) % 3 == 0:
+        if (num+1) % 4 == 0:
             r += 1
             c = 0
     
