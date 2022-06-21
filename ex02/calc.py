@@ -11,12 +11,14 @@ def button_click(event):
             re = eval(eq)
             entry.delete(0, tk.END)
             entry.insert(tk.END, re)
+            if num == "/":
+                if num == 0:
+                    entry.deelte(0, tk.END)
+                    entry.insert(tk.END, 0)
+
         elif num == "C":
             entry.delete(0, tk.END)
-        #elif num == "/":
-         #   if num == 0:
-          #  entry.deelte(0, tk.END)
-           # entry.insert(tk.END, 0)
+        
         else:
             entry.insert(tk.END, num)
 
@@ -35,6 +37,7 @@ if __name__ == "__main__":
                     width = "10",
                     font = ("Time New Roman" , 40)
                     )
+    entry.insert(tk.END, "数値を入力してください")
     entry.grid(column=0, columnspan=5)
 
     r = 1;c = 0
