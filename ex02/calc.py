@@ -13,7 +13,7 @@ def button_click(event):
             entry.insert(tk.END, re)
             if num == "/":
                 if num == 0:
-                    entry.deelte(0, tk.END)
+                    entry.delete(0, tk.END)
                     entry.insert(tk.END, 0)
 
         elif num == "C":
