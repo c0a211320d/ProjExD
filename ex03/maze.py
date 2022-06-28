@@ -27,7 +27,7 @@ def main_proc():
     canvas.coords("tori", cx, cy)
     root.after(100, main_proc)
     
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
     root.title("迷えるこうかとん")
     canvas = tk.Canvas(root, width=1500, height=900, bg="black")
@@ -46,3 +46,6 @@ if __name__ == "__main__":
     label.pack()
     main_proc()
     root.mainloop()
+
+if __name__ == "__main__":
+    main()
