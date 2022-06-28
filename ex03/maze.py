@@ -15,20 +15,13 @@ def main_proc():
     global cx, cy, mx, my, key
     if key == "Up" and maze_bg[my-1][mx] == 0:
         my -= 1
-    elif key == "Up":
-        tkm.showwarning("警告", "上は壁です")
-    if key == "Down" and maze_bg[my+1][mx] == 0:
-        my += 1
-    elif key == "Down":
-        tkm.showwarning("警告", "下は壁です")
-    if key == "Right" and maze_bg[my][mx+1] == 0:
-        mx += 1
-    elif key == "Right":
-        tkm.showwarning("警告", "右は壁です")
-    if key == "Left" and maze_bg[my][mx-1] == 0:
-        mx -= 1
-    elif key == "Left":
-         tkm.showwarning("警告", "左は壁です")
+    elif key == "Up":tkm.showwarning("警告", "上は壁です")
+    if key == "Down" and maze_bg[my+1][mx] == 0:my += 1
+    elif key == "Down":tkm.showwarning("警告", "下は壁です")
+    if key == "Right" and maze_bg[my][mx+1] == 0: mx += 1
+    elif key == "Right":tkm.showwarning("警告", "右は壁です")
+    if key == "Left" and maze_bg[my][mx-1] == 0:mx -= 1
+    elif key == "Left":tkm.showwarning("警告", "左は壁です")
     key = ""
     cx, cy = mx*100+50, my*100+50
     canvas.coords("tori", cx, cy)
