@@ -1,12 +1,16 @@
 import pygame as pg
 import sys
 import random
+import tkinter.messagebox as tkm
 
 def check_bound(rct, scr_rct):
+    bmimg_sfc = pg.Surface((20, 20))
     yoko, tate, = +1, +1
     if rct.left < scr_rct.left or scr_rct.right < rct.right:
         yoko = -1
+        pg.draw.circle(bmimg_sfc, (0, 255, 0), (10, 10), 10)
     if rct.top < scr_rct.top or scr_rct.bottom < rct.bottom:
+        pg.draw.circle(bmimg_sfc, (0, 0, 255), (10, 10), 10)
         tate = -1
     return yoko, tate
 
@@ -36,6 +40,7 @@ def main():
     bmimg_rct.centery = random.randint(0, screen_rct.height)
     vx, vy = +1, +1
 
+
     while True:
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
 
@@ -62,17 +67,21 @@ def main():
             if key_states[pg.K_RIGHT] == True:
                 kkimg_rct.center -= 1
 
+        
+
         screen_sfc.blit(kkimg_sfc, kkimg_rct)
 
         bmimg_rct.move_ip(vx, vy)
 
         screen_sfc.blit(bmimg_sfc, bmimg_rct)
 
+
         yoko, tate = check_bound(bmimg_rct, screen_rct)
         vx *= yoko
         vy *= tate
         if kkimg_rct.colliderect(bmimg_rct):
             return
+            
 
         pg.display.update()
         clock.tick(1000)
@@ -84,4 +93,6 @@ if __name__ == "__main__":
     pg.init()   
     main()
     pg.quit()
+    tkm.showerror("報告", "ぶつかったので爆発しました")
     sys.exit()
+    
