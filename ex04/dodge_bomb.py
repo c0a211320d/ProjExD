@@ -40,14 +40,11 @@ def main():
     bmimg_rct.centery = random.randint(0, screen_rct.height)
     vx, vy = +1, +1
 
-
     while True:
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
-
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
-           
         key_states = pg.key.get_pressed()   #辞書
         if key_states[pg.K_UP] == True:
             kkimg_rct.centery -= 1
@@ -66,28 +63,16 @@ def main():
                 kkimg_rct.centerx += 1
             if key_states[pg.K_RIGHT] == True:
                 kkimg_rct.center -= 1
-
-        
-
         screen_sfc.blit(kkimg_sfc, kkimg_rct)
-
         bmimg_rct.move_ip(vx, vy)
-
         screen_sfc.blit(bmimg_sfc, bmimg_rct)
-
-
         yoko, tate = check_bound(bmimg_rct, screen_rct)
         vx *= yoko
         vy *= tate
         if kkimg_rct.colliderect(bmimg_rct):
             return
-            
-
         pg.display.update()
         clock.tick(1000)
-
-
-
 
 if __name__ == "__main__":
     pg.init()   
