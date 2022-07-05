@@ -70,6 +70,7 @@ def main():
         vx *= yoko
         vy *= tate
         if kkimg_rct.colliderect(bmimg_rct):
+            tkm.showerror("報告", "ぶつかったので爆発しました")
             return
         pg.display.update()
         clock.tick(1000)
@@ -78,6 +79,6 @@ if __name__ == "__main__":
     pg.init()   
     main()
     pg.quit()
-    tkm.showerror("報告", "ぶつかったので爆発しました")
+    
     sys.exit()
     
