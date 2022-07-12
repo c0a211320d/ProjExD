@@ -88,7 +88,6 @@ class Bomb2:      #爆弾2倍速
         self.vy *= tate
         self.blit(scr)
 
-
 class Bomb3:      #爆弾サイズ2倍
     def __init__(self, color, size, vxy, scr):
         self.sfc = pg.Surface((2 * size, 2* size)) # Surface
