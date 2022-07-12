@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 import random
 
+
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)
@@ -62,12 +63,70 @@ class Bomb:
 
     def update(self, scr):
         self.rct.move_ip(self.vx, self.vy)
-        # 練習7
         yoko, tate = check_bound(self.rct, scr.rct)
         self.vx *= yoko
         self.vy *= tate
-        # 練習5
         self.blit(scr)
+
+class Bomb2:      #爆弾2倍速
+    def __init__(self, color, size, vxy, scr):
+        self.sfc = pg.Surface((2 * size, 2* size)) # Surface
+        self.sfc.set_colorkey((0, 0, 0)) 
+        pg.draw.circle(self.sfc, color, (size, size), size)
+        self.rct = self.sfc.get_rect() # Rect
+        self.rct.centerx = random.randint(0, scr.rct.width)
+        self.rct.centery = random.randint(0, scr. rct.height)
+        self.vx, self.vy = vxy
+
+    def blit(self, scr):
+        scr.sfc.blit(self.sfc, self.rct)
+
+    def update(self, scr):
+        self.rct.move_ip(self.vx, self.vy)
+        yoko, tate = check_bound(self.rct, scr.rct)
+        self.vx *= yoko
+        self.vy *= tate
+        self.blit(scr)
+
+
+class Bomb3:      #爆弾サイズ2倍
+    def __init__(self, color, size, vxy, scr):
+        self.sfc = pg.Surface((2 * size, 2* size)) # Surface
+        self.sfc.set_colorkey((0, 0, 0)) 
+        pg.draw.circle(self.sfc, color, (size, size), size)
+        self.rct = self.sfc.get_rect() # Rect
+        self.rct.centerx = random.randint(0, scr.rct.width)
+        self.rct.centery = random.randint(0, scr. rct.height)
+        self.vx, self.vy = vxy
+
+    def blit(self, scr):
+        scr.sfc.blit(self.sfc, self.rct)
+
+    def update(self, scr):
+        self.rct.move_ip(self.vx, self.vy)
+        yoko, tate = check_bound(self.rct, scr.rct)
+        self.vx *= yoko
+        self.vy *= tate
+        self.blit(scr)
+
+class Beam:      #ビーム
+    def __init__(self, image, xy):
+        self.sfc = pg.image.load(image)    # Surface
+        self.sfc = pg.transform.rotozoom(self.sfc, 0, 0.1)  # Surface
+        self.rct = self.sfc.get_rect()          # Rect
+        self.rct.center = xy
+
+    def blit(self, scr):
+        scr.sfc.blit(self.sfc, self.rct)
+
+    def update(self, scr: Screen):
+        key_states = pg.key.get_pressed()
+        if key_states[pg.K_1]:
+            self.rct.move_ip(self.vx, self.vy)
+            yoko, tate = check_bound(self.rct, scr.rct)
+            self.vx *= yoko
+            self.vy *= tate
+            self.blit(scr)
 
 
 def main():
@@ -95,6 +154,9 @@ def main():
     #bmimg_rct.centery = random.randint(0, screen_rct.height)
     #vx, vy = +1, +1 # 練習6
     bkb = Bomb((255, 0, 0), 10, (+1, +1), scr)
+    bkb2 = Bomb2((0, 255, 0), 10, (+2, +2,), scr)
+    bkb3 = Bomb3((0, 0, 255), 20, (+1, +1), scr)
+    beam = Beam("beam.png", (900, 400))
     while True:
         scr.blit()
         #screen_sfc.blit(bgimg_sfc, bgimg_rct)
@@ -125,6 +187,8 @@ def main():
         #vx *= yoko
         #vy *= tate
         bkb.update(scr)
+        bkb2.update(scr)
+        bkb3.update(scr)
         # 練習8
         #if kkimg_rct.colliderect(bmimg_rct): return 
         if kkt.rct.colliderect(bkb.rct):
