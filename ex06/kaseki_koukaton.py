@@ -3,9 +3,7 @@
 import pygame as pg
 import sys
 import random
-import tkinter as tk
 
-#from scipy import rand
 
 class Display:
     def __init__(self, title, wh, col):
@@ -19,6 +17,7 @@ class Display:
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct)
 
+
 class Ganban:
     def __init__(self):
         self.gx_size = 250
@@ -26,7 +25,7 @@ class Ganban:
         self.dig_count = 0
         self.dig_impct = 8
         self.kiban_size = pg.Rect(20,20,1000,800)
-        self.color_list = [[255,255,255],[255,0,0],[0,255,0],[0,0,255]]
+        self.color_list = [[255,255,255],[166,80,48],[100,70,40],[105,60,35]]
         self.rock = [[random.randint(1,3) for i in range(self.gx_size)] for j in range(self.gy_size)]
         self.kiban_sfc = pg.Surface((self.gx_size*4,self.gy_size*4))
         self.kiban_sfc.set_alpha(255)
@@ -49,7 +48,6 @@ class Ganban:
         for y in range(len(self.big_list_x)):
             for x in range(len(self.big_list_x[y])):
                 self.big_list_x[y][x] += self.pos_x
-
         for y in range(len(self.big_list_x)):
             p_y = self.big_list_y[y]
             for x in range(len(self.big_list_x[y])):
@@ -73,6 +71,7 @@ class Ganban:
 
     def bilt(self,dis:Display):
         dis.sfc.blit(self.kiban_sfc,(20,20,1000,800),self.kiban_rct)
+
 
 class Object:
     def __init__(self,dis:Display):
@@ -147,13 +146,12 @@ def main():
                 if gbn.kiban_size.collidepoint(event.pos):
                     gbn.dig()
                     obj.HP_chang(gbn)
-
         dis.blit()
         obj.bilt(dis)
         gbn.bilt(dis)
         pg.display.update()
-
         clock.tick(1000)
+
 
 if __name__ == "__main__":
     pg.init()
